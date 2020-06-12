@@ -1,8 +1,8 @@
 {
-  "homepage": "http://babolfazl.github.io/blog-engine",
   "name": "blog-engine",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://babolfazl.github.io/blog-engine",
   "dependencies": {
     "@popperjs/core": "^2.4.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -23,11 +23,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
+
   },
   "eslintConfig": {
     "extends": "react-app"
