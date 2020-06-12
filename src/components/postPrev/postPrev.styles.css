@@ -1,0 +1,22 @@
+
+.post-prev__post-single:hover .post-prev__post-single__img {
+    filter: none;
+  }
+  .post-prev__post-single__img img {
+    object-fit: cover;
+  }
+  .post-prev__post-single__img {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    filter: blur(1px) brightness(0.9);
+  }
+  .post-prev__post-single__prev {
+    font-size: 1.2em;
+    line-height: 2em;
+    color: black;
+    text-align: justify;
+    margin: 25px;
+  }
+  

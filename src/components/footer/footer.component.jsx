@@ -32,7 +32,7 @@ const Footer = () => {
                                 <img src={require('../../assets/img/xx.png')} width='100%' height="100%" alt="" />
                             </Link>
                         </div>
-                        <ul class="d-lg-flex d-none">
+                        <ul className="d-lg-flex d-none">
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to='/category'>Categories</Link></li>
                             <li><Link to='/authors'>Authors</Link></li>
@@ -41,7 +41,7 @@ const Footer = () => {
                         </ul>
 
                         {/* mobile footer menu */}
-                        <ul class="d-lg-none d-flex justify-content-between w-100 mt-4">
+                        <ul className="d-lg-none d-flex justify-content-between w-100 mt-4">
                             <div>
                                 <li className='mb-2'><Link to='/'>Home</Link></li>
                                 <li className='mb-2'><Link to='/category'>Categories</Link></li>

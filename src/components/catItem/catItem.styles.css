@@ -1,0 +1,23 @@
+.cat-item__category-img img {
+  object-fit: cover;
+}
+.cat-item__category-img {
+  width: 100px;
+  height: 100px;
+}
+.cat-item__category-single {
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cat-item__category-single:hover .cat-item__category-img img {
+    transform: scale(1.1);
+}
+.cat-item__category-single:hover {
+  background-color: #bbb;
+  color: black;
+  font-weight: bold;
+  font-size: 1.05em;
+}
