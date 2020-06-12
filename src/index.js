@@ -16,11 +16,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename='/blogEngine'>
+    <HashRouter basename='/blogEngine/'>
       {/* <Provider> */}
         <App />
       {/* </Provider> */}
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
