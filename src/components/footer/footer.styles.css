@@ -1,0 +1,26 @@
+.footer {
+  background-color: #212636;
+  color: #7f8ba5;
+  padding: 75px 0;
+}
+.login-btn:hover {
+  color: #212636 !important;
+}
+.login-btn {
+  border-radius: 50px !important;
+}
+.footer__login {
+  padding-bottom: 75px;
+}
+.footer__bottom__menu li {
+  margin-left: 25px;
+}
+.footer__bottom__copyright {
+  border-top: solid 1px #545d71;
+}
+
+@media only screen and (max-width: 576px) {
+    .footer {
+        padding: 25px 0;
+    }
+}

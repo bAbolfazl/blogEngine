@@ -1,0 +1,20 @@
+.header {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.header li {
+    margin-left: 35px;
+    /* font-weight: bold; */
+}
+
+.mobile-menu {
+    background-color: white;
+    height: 200px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
