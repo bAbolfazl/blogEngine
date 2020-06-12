@@ -5,6 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+
+
 // import 'jquery'
 // import '@popperjs/core'
 import 'reset-css'
@@ -13,7 +17,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
