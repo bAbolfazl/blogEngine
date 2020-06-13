@@ -1,0 +1,5 @@
+.category-list-page a {
+  flex-basis: 25%;
+  flex-grow: 1;
+  margin: 0 10px;
+}

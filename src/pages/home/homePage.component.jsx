@@ -1,36 +1,52 @@
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+
+import { selectPostsList, selectPostsCatList } from '../../redux/posts/posts.selectors'
 
 import './homePage.styles.css'
 import PostPrev from '../../components/postPrev/postPrev.component'
 import CatItem from '../../components/catItem/catItem.components'
 
-import CATEGORY_LIST from '../../data/category-list'
-import POSTS from '../../data/posts'
 
-export default class HomePage extends Component {
+class HomePage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = ''
+    }
+
     render() {
+
+        const { postsList, catsList } = this.props
+        // debugger
         return (
             <div className='home-page'>
                 <div className='container d-flex flex-wrap'>
                     <div className="home-page__category-list col-lg-3">
                         {
-                            CATEGORY_LIST.map(({ id, ...others }) => (
-                                <Link to={`/category/${id}`} key={id} >
-                                    <CatItem {...others} />
-                                </Link>
-                            ))
+                            catsList ?
+                                catsList.map(({ id, ...others }) => (
+                                    <Link to={`/category/${id}`} key={id} >
+                                        <CatItem {...others} />
+                                    </Link>
+                                ))
+                                :
+                                null
                         }
                     </div>
                     <div className="home-page__post-list col-lg-9">
                         {
-                            POSTS.map(({ id, ...others }) => {
-                                let prev = ''
-                                return <Link to={`/post/${id}`} key={id}>
-                                    <PostPrev  {...others} />
-                                </Link>
-                            })
+                            postsList ?
+
+                                postsList.map(({ id, ...others }) => {
+                                    return <Link to={`/post/${id}`} key={id}>
+                                        <PostPrev {...others} />
+                                    </Link>
+                                })
+                                :
+                                null
 
                         }
                     </div>
@@ -39,3 +55,10 @@ export default class HomePage extends Component {
         )
     }
 }
+
+const mapStateToProps = createStructuredSelector({
+    postsList: selectPostsList,
+    catsList: selectPostsCatList
+})
+
+export default connect(mapStateToProps)(HomePage)

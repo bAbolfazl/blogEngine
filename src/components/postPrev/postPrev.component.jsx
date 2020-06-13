@@ -2,7 +2,8 @@ import React from 'react';
 
 import './postPrev.styles.css'
 
-const PostPrev = ({img, prev, text, title}) => {
+const PostPrev = ({ img, text, title }) => {
+    // let prev = ''
     return (
         <div className='post-prev mb-5'>
             <div className="post-prev__post-single">
@@ -11,8 +12,9 @@ const PostPrev = ({img, prev, text, title}) => {
                 </div>
                 <div className="post-prev__post-single__prev">
                     {
-                        prev = text.split(' ').map((text, i) => {
+                        text.split(' ').map((text, i) => {
                             if (i < 50) { return `${text} ` }
+                            else return null
                         })
 
                     }...

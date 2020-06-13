@@ -1,0 +1,20 @@
+.author-item img {
+  border-radius: 100%;
+  width: 100%;
+}
+
+.author-item__single {
+  flex-basis: 15%;
+  margin: 0 10px;
+  flex-grow: 1;
+}
+
+.author-item:hover {
+    border-radius: 0;
+    background-color: gray;
+}
+.author-item {
+	background: #ccc;
+	border-radius: 10px;
+	padding: 10px;
+}

@@ -2,6 +2,7 @@
   background-color: #212636;
   color: #7f8ba5;
   padding: 75px 0;
+  margin-top: 100px;
 }
 .login-btn:hover {
   color: #212636 !important;
@@ -20,7 +21,7 @@
 }
 
 @media only screen and (max-width: 576px) {
-    .footer {
-        padding: 25px 0;
-    }
+  .footer {
+    padding: 25px 0;
+  }
 }
