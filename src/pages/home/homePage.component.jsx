@@ -12,10 +12,7 @@ import CatItem from '../../components/catItem/catItem.components'
 
 
 class HomePage extends Component {
-    constructor(props) {
-        super(props)
-        this.state = ''
-    }
+   
 
     render() {
 

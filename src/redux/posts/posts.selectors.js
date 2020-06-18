@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-export const selectPosts = state => state.posts
+const selectPosts = state => state.posts
 
 export const selectPostsList = createSelector(
     [selectPosts],
@@ -11,3 +11,22 @@ export const selectPostsCatList = createSelector(
     [selectPosts],
     post => post.categoryList
 )
+
+export const selectPost = postParam =>
+    createSelector(
+        [selectPostsList],
+        posts => posts.find(post => post.id === postParam)
+    )
+
+export const selectPostsWithSameCat = catId =>
+    createSelector(
+        [selectPostsList],
+        posts => posts.filter(post => post.cat === catId)
+    )
+
+export const selectCat = catId => {
+    createSelector(
+        [selectPostsCatList],
+        cats => cats.find(cat => cat.id === catId)
+    )
+}
