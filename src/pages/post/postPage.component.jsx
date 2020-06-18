@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // import { createStructuredSelector } from 'reselect'
 
 import { selectPost } from '../../redux/posts/posts.selectors'
-import { selectUser } from '../../redux/users/users.selectors'
+// import { selectUser } from '../../redux/users/users.selectors'
 
 const PostPage = ({ post }) => {
 
