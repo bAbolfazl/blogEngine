@@ -15,18 +15,39 @@ export const selectPostsCatList = createSelector(
 export const selectPost = postParam =>
     createSelector(
         [selectPostsList],
-        posts => posts.find(post => post.id === postParam)
+        posts => {
+            if (!posts) return null
+            else
+                return posts.find(post => post.id === postParam)
+        }
     )
 
 export const selectPostsWithSameCat = catId =>
     createSelector(
         [selectPostsList],
-        posts => posts.filter(post => post.cat === catId)
+        posts => {
+            if (!posts) return
+            else
+                return posts.filter(post => post.cat === catId)
+        }
     )
 
-export const selectCat = catId => {
+export const selectCat = catId => createSelector(
+    selectPostsCatList,
+    cats => {
+        if (!cats) return
+        else
+            return cats.find(cat => cat.id === catId)
+    }
+)
+
+export const selectPostsWithPerson = personId =>
     createSelector(
-        [selectPostsCatList],
-        cats => cats.find(cat => cat.id === catId)
+        selectPostsList,
+        posts => {
+            if (!posts) return null
+            else {
+                return posts.filter(post => post.author === personId)
+            }
+        }
     )
-}

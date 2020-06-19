@@ -12,7 +12,7 @@ import CatItem from '../../components/catItem/catItem.components'
 class CategoryListPage extends Component {
     render() {
         const { catList } = this.props
-        console.log(catList)
+        // console.log(catList)
         return (
             <div className='category-list-page'>
                 <div className="container">
@@ -41,4 +41,4 @@ const mapStateToProps = createStructuredSelector(
     }
 )
 
-export default connect(mapStateToProps)(CategoryListPage)
+ export default connect(mapStateToProps)(CategoryListPage)

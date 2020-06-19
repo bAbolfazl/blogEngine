@@ -12,6 +12,7 @@ const PostPage = ({ post }) => {
     // console.log('x', post)
     // const authorID = post.id
     // const {post} = this.props
+    if (!post) return null
     return (
 
         <div className='post-page container'>
