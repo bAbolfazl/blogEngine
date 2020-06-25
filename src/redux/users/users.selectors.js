@@ -7,6 +7,11 @@ export const selectUsersList = createSelector(
     users => users.usersList
 )
 
+export const selectCurrentUser = createSelector(
+    [selectUsers],
+    users => users.currentUser
+)
+
 export const selectUserWithId = userId =>
     createSelector(
         [selectUsersList],

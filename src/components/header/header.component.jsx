@@ -6,16 +6,19 @@ import { createStructuredSelector } from 'reselect'
 
 import { toggleMobileMenu } from '../../redux/header/header.actions'
 import { selectHeaderShow } from '../../redux/header/header.selectors'
+import { selectCurrentUser } from '../../redux/users/users.selectors'
+
+import { auth } from '../../firebase/firebase.utils'
 
 import "./header.styles.css"
 
-const Header = ({ toggleMobileMenu, showMobileMenu }) => {
+const Header = ({ toggleMobileMenu, showMobileMenu, currentUser }) => {
     return (
         <header className='header shadow sticky-top'>
             <div className="container d-flex justify-content-between align-items-center">
                 <div style={{ height: '100px' }}>
                     <Link to='/'>
-                        <img src={require('../../assets/img/xx.png')} width='100%' height="100%" alt="" />
+                        <img src={require('../../assets/img/xx.png')} height="100%" alt="" />
                     </Link>
                 </div>
                 <div>
@@ -24,7 +27,16 @@ const Header = ({ toggleMobileMenu, showMobileMenu }) => {
                         <li><Link to='/category'>Categories</Link></li>
                         <li><Link to='/authors'>Authors</Link></li>
                         <li><Link to='/about'>About Us</Link></li>
-                        <li><Link to='/login'>Login / Register</Link></li>
+                        <li>
+                            {
+                                currentUser ?
+                                    <div onClick={() => auth.signOut()}>
+                                        Sign Out
+                                    </div>
+                                    :
+                                    <Link to='/login'>Login / Register</Link>
+                            }
+                        </li>
                     </ul>
                     <button
                         className='d-lg-none btn'
@@ -51,7 +63,8 @@ const Header = ({ toggleMobileMenu, showMobileMenu }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    showMobileMenu: selectHeaderShow
+    showMobileMenu: selectHeaderShow,
+    currentUser: selectCurrentUser
 })
 
 const dispatchStateToProps = dispatch => {

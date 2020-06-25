@@ -1,0 +1,31 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 70px 0;
+}
+
+.label {
+  position: absolute;
+  transition: 0.25s;
+}
+
+.input:focus {
+  background-color: #e2ecf9;
+}
+
+.input:focus ~ .label {
+  font-size: 0.8em;
+  top: -25px;
+}
+
+.input {
+  border: none;
+  border-bottom: solid 1px;
+  padding-bottom: 10px;
+}
+
+.shrink {
+  font-size: 0.8em;
+  top: -25px;
+}

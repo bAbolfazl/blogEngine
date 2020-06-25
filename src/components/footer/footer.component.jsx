@@ -18,8 +18,8 @@ const Footer = () => {
                         Are you ready to get started?
                     </div>
                     <div>
-                        <Link to='/login'>
-                            <button className='btn btn-info login-btn font-weight-bold px-4 py-2'>Login / Register</button>
+                        <Link to='/login' className='w-100'>
+                            <button className='btn btn-info w-100 login-btn font-weight-bold px-4 py-2'>Login / Register</button>
                         </Link>
                     </div>
                 </div>

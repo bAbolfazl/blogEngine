@@ -1,12 +1,18 @@
 import React from 'react';
 
 // additional libs
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 
 // redux
 import { setPostsList, setCatsList } from './redux/posts/posts.actions'
 import { setUsersList } from './redux/users/users.actions'
+import { selectCurrentUser } from './redux/users/users.selectors'
+// firebase
+import { auth, createUserDoc } from './firebase/firebase.utils'
+
+import { setCurrentUser } from './redux/users/users.actions'
 
 // data
 import CATEGORY_LIST from './data/category-list'
@@ -31,14 +37,39 @@ import NotFound from './pages/404/404.component'
 
 class App extends React.Component {
 
+  unSubscribeAuth = null
+
   componentDidMount() {
-    const { setPostsList, setCatsList, setUsersList } = this.props
+    
+    const { setPostsList, setCatsList, setUsersList, setCurrentUser } = this.props
     setPostsList(POSTS)
     setCatsList(CATEGORY_LIST)
     setUsersList(USERS)
+    
+    this.unSubscribeAuth = auth.onAuthStateChanged(async user => {
+      // console.log(user)
+      if (!user) {
+        setCurrentUser(null)
+      }
+      else {
+        const userRef = await createUserDoc(user)
+        console.log(userRef)
+        userRef.onSnapshot(snapShot =>
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
+          })
+        )
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    this.unSubscribeAuth()
   }
 
   render() {
+    const { currentUser } = this.props
     return (
       <div>
         <Header />
@@ -46,7 +77,7 @@ class App extends React.Component {
         <Switch>
 
           <Route exact path='/' component={HomePage} />
-          <Route path='/login' component={LoginPage} />
+          <Route path='/login' component={() => currentUser ? <Redirect to='/' /> : <LoginPage />} />
           <Route path='/about' component={AboutPage} />
           <Route exact path='/authors' component={AuthorsPage} />
           <Route exact path='/category' component={CategoryListPage} />
@@ -72,7 +103,12 @@ const mapDispatchToProps = dispatch => (
     setPostsList: posts => dispatch(setPostsList(posts)),
     setCatsList: cats => dispatch(setCatsList(cats)),
     setUsersList: users => dispatch(setUsersList(users)),
+    setCurrentUser: user => dispatch(setCurrentUser(user))
   }
 )
 
-export default connect(null, mapDispatchToProps)(App)
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

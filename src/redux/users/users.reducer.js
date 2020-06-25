@@ -1,7 +1,8 @@
-import { SET_USERS_LIST } from './users.actions'
+import { SET_USERS_LIST, SET_CURRENT_USER } from './users.actions'
 
 const INITIAL_STATE = {
     usersList: '',
+    currentUser: ''
 }
 // debugger
 
@@ -14,6 +15,12 @@ const usersReducer = (state = INITIAL_STATE, action) => {
                     usersList: action.payload
                 }
 
+            }
+            case SET_CURRENT_USER: {
+                return {
+                    ...state,
+                    currentUser: action.payload
+                }
             }
             default:
             return {
