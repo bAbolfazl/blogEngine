@@ -18,10 +18,6 @@ export const selectUserWithId = userId =>
         usersList => {
             if (!usersList) return null
             else
-                return usersList.find(user => {
-                    console.log(user.id)
-                    console.log(userId)
-                    return user.id === userId
-                })
+                return usersList.find(user => user.id === userId)
         }
     )

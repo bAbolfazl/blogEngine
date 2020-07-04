@@ -25,7 +25,8 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider)
 
 export default firebase
 
-// store user
+// store data
+// user
 export const createUserDoc = async (userAuth, otherData) => {
     if (!userAuth) return
 
@@ -50,7 +51,30 @@ export const createUserDoc = async (userAuth, otherData) => {
     }
     return userRef
 }
+// post
+export const createPostDoc = async (userAuth, otherData) => {
+    if (!userAuth) return
 
+    const postRef = firestore.doc('posts/')
+
+    const { img, text, cat, title } = otherData
+    const writeDate = new Date()
+
+    try {
+        await postRef.set({
+            img,
+            text,
+            title,
+            cat,
+            writeDate,
+        })
+    } catch (err) {
+        console.log('err', err.message)
+    }
+    return postRef
+}
+
+// add data to database
 export const addCollectionAndDocs = async (collectionName, documents) => {
     const collectionRef = firestore.collection(collectionName)
     // console.log(collectionRef)
@@ -63,4 +87,39 @@ export const addCollectionAndDocs = async (collectionName, documents) => {
     })
 
     return await batch.commit()
+}
+
+// fetch data convert
+// posts
+export const convertCollectionSnapshotToMap = collection => {
+    const newCollection = collection.docs.map(doc => {
+        // console.log(doc.data())
+        const { img, text, comments, cat, title } = doc.data()
+        // console.log(img, text, comments, cat, title)
+        return {
+            id: doc.id,
+            title,
+            img,
+            cat,
+            text,
+            comments
+        }
+    })
+    // console.log(newCollection)
+    return newCollection
+}
+// users
+export const convertCollectionUsersSnapshotToMap = collection => {
+    const newCollection = collection.docs.map(doc => {
+        console.log(doc.data())
+        const { displayName, registerDate } = doc.data()
+
+        return {
+            id: doc.id,
+            displayName,
+            registerDate,
+            img: 'https://www.w3schools.com/howto/img_avatar.png'
+        }
+    })
+    return newCollection
 }

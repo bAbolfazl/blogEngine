@@ -16,7 +16,7 @@ class AuthorsPage extends Component {
                 {
                     usersList ?
                         usersList.map(({ id, ...others }) => (
-                            <Link key={id} to={`/authors/${id}`} className='mx-3 mb-3'>
+                            <Link style={{flexBasis:'15%'}} key={id} to={`/authors/${id}`} className='mx-3 mb-3'>
                                 <AuthorItem {...others} />
                             </Link>
                         ))

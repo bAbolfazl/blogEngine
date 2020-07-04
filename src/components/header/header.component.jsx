@@ -30,8 +30,15 @@ const Header = ({ toggleMobileMenu, showMobileMenu, currentUser }) => {
                         <li>
                             {
                                 currentUser ?
-                                    <div onClick={() => auth.signOut()}>
-                                        Sign Out
+                                    <div className='text-center'>
+                                        <div className='text-info'>
+                                            <Link to='/write'>
+                                                Write Post
+                                            </Link>
+                                        </div>
+                                        <div style={{ cursor: 'pointer' }} onClick={() => auth.signOut()}>
+                                            Sign Out
+                                    </div>
                                     </div>
                                     :
                                     <Link to='/login'>Login / Register</Link>

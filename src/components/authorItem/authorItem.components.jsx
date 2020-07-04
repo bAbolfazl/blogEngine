@@ -2,7 +2,7 @@ import React from 'react';
 
 import './authorItem.styles.css'
 
-const AuthorItem = ({ img, name }) => {
+const AuthorItem = ({ img, displayName }) => {
     return (
         <div className='author-item'>
 
@@ -11,7 +11,7 @@ const AuthorItem = ({ img, name }) => {
                     <img src={img} width='100%' alt="" />
                 </div>
                 <div>
-                    <h4>{name}</h4>
+                    <h4>{displayName}</h4>
                 </div>
             </div>
 

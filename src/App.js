@@ -9,14 +9,14 @@ import { createStructuredSelector } from 'reselect'
 import { setPostsList, setCatsList } from './redux/posts/posts.actions'
 import { setUsersList } from './redux/users/users.actions'
 import { selectCurrentUser } from './redux/users/users.selectors'
-// firebase
-import { auth, createUserDoc } from './firebase/firebase.utils'
-
 import { setCurrentUser } from './redux/users/users.actions'
+
+// firebase
+import { auth, createUserDoc, firestore, convertCollectionSnapshotToMap, convertCollectionUsersSnapshotToMap } from './firebase/firebase.utils'
 
 // data
 import CATEGORY_LIST from './data/category-list'
-import POSTS from './data/posts'
+// import POSTS from './data/posts'
 import USERS from './data/users'
 
 // components
@@ -33,19 +33,34 @@ import AuthorsPage from './pages/authors/authorsPage.component'
 import PersonalPosts from './pages/personalPosts/personalPostsPage.component'
 import CategoryListPage from './pages/categoryList/categoryListPage.component'
 import NotFound from './pages/404/404.component'
+import Write from './pages/write/write.component'
 
 
 class App extends React.Component {
 
   unSubscribeAuth = null
 
+
   componentDidMount() {
-    
+
     const { setPostsList, setCatsList, setUsersList, setCurrentUser } = this.props
-    setPostsList(POSTS)
+    // setPostsList(POSTS)
     setCatsList(CATEGORY_LIST)
-    setUsersList(USERS)
-    
+    // setUsersList(USERS)
+
+    const collectionRefPosts = firestore.collection('posts')
+    collectionRefPosts.onSnapshot(async snapShot => {
+      const collectionMap = convertCollectionSnapshotToMap(snapShot)
+      // console.log(collectionMap)
+      setPostsList(collectionMap)
+    })
+
+    const collectionRefUsers = firestore.collection('users')
+    collectionRefUsers.onSnapshot(async snapshot => {
+      const collectionMap = convertCollectionUsersSnapshotToMap(snapshot)
+      setUsersList(collectionMap)
+    })
+
     this.unSubscribeAuth = auth.onAuthStateChanged(async user => {
       // console.log(user)
       if (!user) {
@@ -53,7 +68,7 @@ class App extends React.Component {
       }
       else {
         const userRef = await createUserDoc(user)
-        console.log(userRef)
+        // console.log(userRef)
         userRef.onSnapshot(snapShot =>
           setCurrentUser({
             id: snapShot.id,
@@ -81,6 +96,7 @@ class App extends React.Component {
           <Route path='/about' component={AboutPage} />
           <Route exact path='/authors' component={AuthorsPage} />
           <Route exact path='/category' component={CategoryListPage} />
+          <Route exact path='/write' component={() => currentUser ? <Write /> : <Redirect to='/' />} />
 
           <Route path='/category/:catId' component={CategoryPage} />
           <Route path='/post/:postId' component={PostPage} />

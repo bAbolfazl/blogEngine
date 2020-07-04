@@ -12,7 +12,7 @@ import CatItem from '../../components/catItem/catItem.components'
 
 
 class HomePage extends Component {
-   
+
 
     render() {
 
@@ -21,18 +21,6 @@ class HomePage extends Component {
         return (
             <div className='home-page'>
                 <div className='container d-flex flex-wrap'>
-                    <div className="home-page__category-list col-lg-3">
-                        {
-                            catsList ?
-                                catsList.map(({ id, ...others }) => (
-                                    <Link to={`/category/${id}`} key={id} >
-                                        <CatItem {...others} />
-                                    </Link>
-                                ))
-                                :
-                                null
-                        }
-                    </div>
                     <div className="home-page__post-list col-lg-9">
                         {
                             postsList ?
@@ -47,6 +35,19 @@ class HomePage extends Component {
 
                         }
                     </div>
+                    <div className="home-page__category-list col-lg-3">
+                        {
+                            catsList ?
+                                catsList.map(({ id, ...others }) => (
+                                    <Link to={`/category/${id}`} key={id} >
+                                        <CatItem {...others} />
+                                    </Link>
+                                ))
+                                :
+                                null
+                        }
+                    </div>
+
                 </div>
             </div >
         )
