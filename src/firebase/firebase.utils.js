@@ -102,7 +102,7 @@ export const addCollectionAndDocs = async (collectionName, documents) => {
 export const convertCollectionSnapshotToMap = collection => {
     const newCollection = collection.docs.map(doc => {
         // console.log(doc.data())
-        const { img, text, comments, cat, title } = doc.data()
+        const { img, text, comments, cat, title, writeDate, author } = doc.data()
         // console.log(img, text, comments, cat, title)
         return {
             id: doc.id,
@@ -110,7 +110,9 @@ export const convertCollectionSnapshotToMap = collection => {
             img,
             cat,
             text,
-            comments
+            comments,
+            writeDate,
+            author
         }
     })
     // console.log(newCollection)
@@ -129,5 +131,20 @@ export const convertCollectionUsersSnapshotToMap = collection => {
             img: 'https://www.w3schools.com/howto/img_avatar.png'
         }
     })
+    return newCollection
+}
+//categories
+export const convertCollectionCatsSnapshotToMap = collection => {
+    const newCollection = collection.docs.map(doc => {
+        // console.log(doc.data())
+        const { img, name } = doc.data()
+        // console.log(img, text, comments, cat, title)
+        return {
+            id: doc.id,
+            name,
+            img,
+        }
+    })
+    // console.log(newCollection)
     return newCollection
 }

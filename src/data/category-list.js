@@ -1,6 +1,6 @@
 const CATEGORY_LIST = [
     {
-        id: '1',
+        id: '1', 
         name: 'Politics',
         img: 'https://betanews.com/wp-content/uploads/2014/05/politician-292x300.jpg'
     },
@@ -11,7 +11,7 @@ const CATEGORY_LIST = [
     },
     {
         id: '3',
-        name: 'technology',
+        name: 'Technology',
         img: 'https://betanews.com/wp-content/uploads/2014/05/politician-292x300.jpg'
     },
     {
@@ -21,7 +21,7 @@ const CATEGORY_LIST = [
     },
     {
         id: '5',
-        name: 'history',
+        name: 'History',
         img: 'https://betanews.com/wp-content/uploads/2014/05/politician-292x300.jpg'
     },
     {

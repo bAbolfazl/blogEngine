@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import { selectPostsCatList } from '../../redux/posts/posts.selectors'
 import { selectCurrentUser } from '../../redux/users/users.selectors'
 
-import { createPostDoc, imagesRef, storage } from '../../firebase/firebase.utils'
+import { createPostDoc, imagesRef,  } from '../../firebase/firebase.utils'
 
 import './write.styles.css'
 

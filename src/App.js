@@ -12,10 +12,10 @@ import { selectCurrentUser } from './redux/users/users.selectors'
 import { setCurrentUser } from './redux/users/users.actions'
 
 // firebase
-import { auth, createUserDoc, firestore, convertCollectionSnapshotToMap, convertCollectionUsersSnapshotToMap } from './firebase/firebase.utils'
+import { auth, createUserDoc, firestore, convertCollectionSnapshotToMap, convertCollectionCatsSnapshotToMap, convertCollectionUsersSnapshotToMap } from './firebase/firebase.utils'
 
 // data
-import CATEGORY_LIST from './data/category-list'
+// import CATEGORY_LIST from './data/category-list'
 // import POSTS from './data/posts'
 // import USERS from './data/users'
 
@@ -40,17 +40,19 @@ class App extends React.Component {
 
   unSubscribeAuth = null
 
-
   componentDidMount() {
 
     const { setPostsList, setCatsList, setUsersList, setCurrentUser } = this.props
     // setPostsList(POSTS)
-    setCatsList(CATEGORY_LIST)
+    // setCatsList(CATEGORY_LIST)
     // setUsersList(USERS)
+    const collectionRefCats = firestore.collection('categories')
+    collectionRefCats.onSnapshot(async snapshot => {
+      const collectionMap = convertCollectionCatsSnapshotToMap(snapshot)
+      setCatsList(collectionMap)
+    })
 
     const collectionRefPosts = firestore.collection("posts").orderBy("writeDate", "desc")
-
-
     collectionRefPosts.onSnapshot(async snapShot => {
       const collectionMap = convertCollectionSnapshotToMap(snapShot)
       // console.log(collectionMap)

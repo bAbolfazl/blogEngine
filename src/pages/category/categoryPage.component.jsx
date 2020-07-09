@@ -22,7 +22,7 @@ class CategoryPage extends Component {
                 </div>
             )
         }
-        else
+        else 
             return (
                 <div className='category-page container'>
                     <h2>
