@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCpCpzxMwHjYjG4B80WrTwiFpL2LHp8DUg",
@@ -17,6 +18,10 @@ firebase.initializeApp(firebaseConfig)
 
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
+
+export const storage = firebase.storage()
+export const storageRef = storage.ref()
+export const imagesRef = storageRef.child('images')
 
 const provider = new firebase.auth.GoogleAuthProvider()
 provider.setCustomParameters({ prompt: 'select_account' })
@@ -54,14 +59,17 @@ export const createUserDoc = async (userAuth, otherData) => {
 // post
 export const createPostDoc = async (userAuth, otherData) => {
     if (!userAuth) return
+    // console.log(userAuth)
 
-    const postRef = firestore.doc('posts/')
+    const postRef = firestore.collection('posts/').doc()
+    console.log(await postRef.get())
 
     const { img, text, cat, title } = otherData
     const writeDate = new Date()
 
     try {
         await postRef.set({
+            author: userAuth,
             img,
             text,
             title,

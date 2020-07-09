@@ -17,7 +17,7 @@ import { auth, createUserDoc, firestore, convertCollectionSnapshotToMap, convert
 // data
 import CATEGORY_LIST from './data/category-list'
 // import POSTS from './data/posts'
-import USERS from './data/users'
+// import USERS from './data/users'
 
 // components
 import './App.css';
@@ -48,7 +48,9 @@ class App extends React.Component {
     setCatsList(CATEGORY_LIST)
     // setUsersList(USERS)
 
-    const collectionRefPosts = firestore.collection('posts')
+    const collectionRefPosts = firestore.collection("posts").orderBy("writeDate", "desc")
+
+
     collectionRefPosts.onSnapshot(async snapShot => {
       const collectionMap = convertCollectionSnapshotToMap(snapShot)
       // console.log(collectionMap)
