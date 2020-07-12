@@ -49,20 +49,20 @@ class App extends React.Component {
     const collectionRefCats = firestore.collection('categories')
     collectionRefCats.onSnapshot(async snapshot => {
       const collectionMap = convertCollectionCatsSnapshotToMap(snapshot)
-      setCatsList(collectionMap)
+      await setCatsList(collectionMap)
     })
 
     const collectionRefPosts = firestore.collection("posts").orderBy("writeDate", "desc")
     collectionRefPosts.onSnapshot(async snapShot => {
       const collectionMap = convertCollectionSnapshotToMap(snapShot)
       // console.log(collectionMap)
-      setPostsList(collectionMap)
+      await setPostsList(collectionMap)
     })
 
     const collectionRefUsers = firestore.collection('users')
     collectionRefUsers.onSnapshot(async snapshot => {
       const collectionMap = convertCollectionUsersSnapshotToMap(snapshot)
-      setUsersList(collectionMap)
+      await setUsersList(collectionMap)
     })
 
     this.unSubscribeAuth = auth.onAuthStateChanged(async user => {

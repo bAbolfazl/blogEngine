@@ -13,10 +13,11 @@ class AuthorsPage extends Component {
         const { usersList } = this.props
         return (
             <div className='author-page container d-flex flex-wrap align-items-center justify-content-around'>
+                {console.log('usersList', usersList)}
                 {
                     usersList ?
                         usersList.map(({ id, ...others }) => (
-                            <Link style={{flexBasis:'15%'}} key={id} to={`/authors/${id}`} className='mx-3 mb-3'>
+                            <Link style={{ flexBasis: '15%' }} key={id} to={`/authors/${id}`} className='mx-3 mb-3'>
                                 <AuthorItem {...others} />
                             </Link>
                         ))

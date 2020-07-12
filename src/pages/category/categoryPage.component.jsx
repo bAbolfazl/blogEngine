@@ -29,11 +29,14 @@ class CategoryPage extends Component {
                         {cat.name}
                     </h2>
                     {
+                        posts ?
                         posts.map(({ id, ...others }) => (
                             <Link to={`/post/${id}`}>
                                 <PostPrev key={id} {...others} />
                             </Link>
                         ))
+                        :
+                        null
                     }
                 </div>
             )
