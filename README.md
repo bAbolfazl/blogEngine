@@ -1,6 +1,5 @@
 Deployed demo (use VPN):
-wide-sleep.surge.sh/
-
+http://wide-sleep.surge.sh/
 
 
 
